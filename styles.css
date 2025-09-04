@@ -836,141 +836,18 @@ body {
     border-bottom: none;
 }
 
-/* Prices Section */
-.prices {
-    padding: 100px 0;
-    background: #f8fafc;
-}
-
-.prices-slider-container {
-    position: relative;
-    overflow: hidden;
-    padding: 2rem 0;
-}
-
-.prices-slider {
-    display: flex;
-    transition: transform 0.5s ease;
-    gap: 2rem;
-}
-
-.prices-slider .price-card {
-    min-width: calc(33.333% - 1.33rem);
-    flex-shrink: 0;
-}
-
-.price-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    padding: 2.5rem;
-    border-radius: 25px;
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    text-align: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    position: relative;
-    overflow: hidden;
-}
-
-.price-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.price-card:hover::before {
-    opacity: 1;
-}
-
-.price-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    border-color: rgba(102, 126, 234, 0.5);
-}
-
-.price-card.featured {
-    border-color: rgba(102, 126, 234, 0.6);
-    transform: scale(1.05);
-    background: rgba(102, 126, 234, 0.1);
-}
-
-.price-card.featured::before {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
-    opacity: 1;
-}
-
-.price-card.featured:hover {
-    transform: scale(1.05) translateY(-8px) scale(1.02);
-    box-shadow: 
-        0 25px 50px rgba(102, 126, 234, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-.price-header {
-    margin-bottom: 2rem;
-}
-
-.price-header h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 1rem;
-}
-
-.price {
-    font-size: 3rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    position: relative;
-    animation: priceGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes priceGlow {
-    0% { 
-        filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.3));
-    }
-    100% { 
-        filter: drop-shadow(0 0 15px rgba(102, 126, 234, 0.5));
-    }
-}
-
-.price-features {
-    list-style: none;
-    margin-bottom: 2rem;
-}
-
-.price-features li {
-    padding: 0.5rem 0;
-    color: #64748b;
-    border-bottom: 1px solid #f1f5f9;
-}
-
-.price-features li:last-child {
-    border-bottom: none;
-}
 
 /* Gallery Section */
 .gallery {
     padding: 100px 0;
+    background: #f8fafc;
 }
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
 }
 
 .gallery-item {
@@ -982,6 +859,7 @@ body {
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     transform: perspective(1000px) rotateX(5deg);
+    min-height: 300px;
 }
 
 .gallery-item:hover {
@@ -1010,7 +888,7 @@ body {
 
 .gallery-item img {
     width: 100%;
-    height: 250px;
+    height: 300px;
     object-fit: cover;
     display: block;
     transition: all 0.4s ease;
@@ -1026,26 +904,29 @@ body {
 .testimonials {
     padding: 100px 0;
     background: #f8fafc;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    width: 100% !important;
 }
 
 .testimonial-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    padding: 2.5rem;
-    border-radius: 25px;
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    position: relative;
-    overflow: hidden;
+    background: #f8f9fa !important;
+    padding: 20px !important;
+    border-radius: 10px !important;
+    border: 2px solid #e9ecef !important;
+    margin: 10px 0 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
 }
 
 .testimonial-card::before {
@@ -1077,10 +958,13 @@ body {
 }
 
 .testimonial-content p {
-    font-size: 1.1rem;
-    color: #64748b;
-    line-height: 1.8;
-    font-style: italic;
+    font-size: 1.1rem !important;
+    color: #1e293b !important;
+    line-height: 1.8 !important;
+    font-style: italic !important;
+    font-weight: 500 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .testimonial-author {
@@ -1090,15 +974,15 @@ body {
 }
 
 .author-info h4 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 0.25rem;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    margin-bottom: 0.25rem !important;
 }
 
 .author-info span {
-    color: #64748b;
-    font-size: 0.9rem;
+    color: #64748b !important;
+    font-size: 0.9rem !important;
 }
 
 /* Contact Section */
@@ -1171,11 +1055,11 @@ body {
 
 .contact-form {
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    padding: 3rem;
-    border-radius: 30px;
+    padding: 1.5rem;
+    border-radius: 20px;
     box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.1),
-        0 8px 25px rgba(0, 0, 0, 0.05),
+        0 15px 30px rgba(0, 0, 0, 0.1),
+        0 5px 15px rgba(0, 0, 0, 0.05),
         inset 0 1px 0 rgba(255, 255, 255, 0.8);
     border: 1px solid rgba(102, 126, 234, 0.1);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -1204,7 +1088,7 @@ body {
 }
 
 .form-group {
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem;
     position: relative;
 }
 
@@ -1221,10 +1105,10 @@ body {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 1.2rem 1.5rem;
+    padding: 1rem 1.2rem;
     border: 2px solid #e5e7eb;
     border-radius: 20px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     font-family: inherit;
     background: #ffffff;
@@ -1251,12 +1135,12 @@ body {
 
 .form-group textarea {
     resize: vertical;
-    min-height: 120px;
+    min-height: 100px;
 }
 
 /* Form başlığı */
 .contact-form h3 {
-    font-size: 2rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: #1e293b;
     margin-bottom: 0.5rem;
@@ -1270,8 +1154,8 @@ body {
 .contact-form p {
     text-align: center;
     color: #64748b;
-    margin-bottom: 2.5rem;
-    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.9rem;
 }
 
 /* Map Section */

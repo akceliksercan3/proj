@@ -377,18 +377,7 @@ window.addEventListener('error', function(e) {
     console.error('JavaScript error:', e.error);
 });
 
-// Add service worker registration (if needed)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
-                console.log('ServiceWorker registration successful');
-            })
-            .catch(function(err) {
-                console.log('ServiceWorker registration failed');
-            });
-    });
-}
+// Service Worker kaldırıldı - şu an için gerekli değil
 
 // Google Maps Reviews Cache System
 const GOOGLE_PLACES_API_KEY = 'AIzaSyBqpRhsYXFC5DTf8DNLgK-kB2u_siD40Y4'; // Google Places API Key
@@ -418,15 +407,29 @@ function getCachedReviews() {
 // Google Places API'den yorumları çek
 async function fetchGoogleReviews() {
     try {
+        // API key ve Place ID kontrolü
+        if (GOOGLE_PLACES_API_KEY === 'YOUR_API_KEY_HERE' || PLACE_ID === 'YOUR_PLACE_ID_HERE') {
+            console.log('API Key veya Place ID ayarlanmamış, fallback yorumları kullanılıyor');
+            return getFallbackReviews();
+        }
+        
         console.log('Fetching from Google API...');
         console.log('Place ID:', PLACE_ID);
         console.log('API Key:', GOOGLE_PLACES_API_KEY.substring(0, 10) + '...');
         
-        // CORS proxy kullanarak Google API'ye istek gönder
-        const proxyUrl = 'https://api.allorigins.win/raw?url=';
+        // CORS proxy'ler çalışmıyor, doğrudan API'yi dene
         const apiUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=reviews&key=${GOOGLE_PLACES_API_KEY}`;
         
-        const response = await fetch(proxyUrl + encodeURIComponent(apiUrl));
+        console.log('Trying direct API call...');
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        console.log('Direct API response status:', response.status);
         
         console.log('Response status:', response.status);
         
@@ -436,12 +439,17 @@ async function fetchGoogleReviews() {
         
         const data = await response.json();
         console.log('API Response:', data);
+        console.log('API Status:', data.status);
+        console.log('Result exists:', !!data.result);
+        console.log('Reviews exist:', !!(data.result && data.result.reviews));
         
         if (data.status === 'OK' && data.result && data.result.reviews) {
             console.log('Reviews found:', data.result.reviews.length);
+            console.log('First review:', data.result.reviews[0]);
             return data.result.reviews;
         } else {
             console.log('No reviews found or API error:', data.status);
+            console.log('Error message:', data.error_message || 'No error message');
             return getFallbackReviews();
         }
     } catch (error) {
@@ -452,23 +460,24 @@ async function fetchGoogleReviews() {
 
 // Fallback yorumlar (API çalışmazsa)
 function getFallbackReviews() {
+    console.log('Using fallback reviews due to CORS restrictions');
     return [
         {
-            author_name: "Ahmet Y.",
+            author_name: "Ayşe Yılmaz",
             rating: 5,
-            text: "Harika hizmet! Kıyafetlerim tertemiz geldi. Kesinlikle tavsiye ederim.",
+            text: "Çok kaliteli hizmet aldım. Kıyafetlerim yeni gibi oldu. Kesinlikle tavsiye ederim.",
             time: Date.now()
         },
         {
-            author_name: "Fatma K.",
+            author_name: "Mehmet Demir", 
             rating: 5,
-            text: "Çok profesyonel çalışıyorlar. Gelinliğimi mükemmel temizlediler.",
+            text: "Hızlı ve güvenilir hizmet. Fiyatları da çok uygun. Teşekkürler!",
             time: Date.now()
         },
         {
-            author_name: "Mehmet S.",
+            author_name: "Fatma Özkan",
             rating: 5,
-            text: "Hızlı teslimat ve kaliteli hizmet. Teşekkürler Beyoğlu Kuru Temizleme!",
+            text: "Profesyonel ekip, kaliteli hizmet. Gelinliğimi mükemmel temizlediler.",
             time: Date.now()
         }
     ];
@@ -495,18 +504,27 @@ async function getReviews() {
 
 // Testimonials'ı güncelle
 async function updateTestimonials() {
+    console.log('updateTestimonials called');
     const reviews = await getReviews();
-    const testimonialsContainer = document.querySelector('.testimonials-grid');
+    console.log('Reviews received:', reviews);
     
-    if (!testimonialsContainer) return;
+    const testimonialsContainer = document.querySelector('.testimonials-grid');
+    console.log('Testimonials container found:', !!testimonialsContainer);
+    
+    if (!testimonialsContainer) {
+        console.error('Testimonials container not found!');
+        return;
+    }
     
     // Mevcut testimonials'ı temizle
     testimonialsContainer.innerHTML = '';
     
     // İlk 3 yorumu göster
     const displayReviews = reviews.slice(0, 3);
+    console.log('Displaying reviews:', displayReviews.length);
     
-    displayReviews.forEach(review => {
+    displayReviews.forEach((review, index) => {
+        console.log(`Creating testimonial ${index + 1}:`, review);
         const testimonialCard = document.createElement('div');
         testimonialCard.className = 'testimonial-card';
         
@@ -526,7 +544,10 @@ async function updateTestimonials() {
         `;
         
         testimonialsContainer.appendChild(testimonialCard);
+        console.log(`Testimonial ${index + 1} added to DOM`);
     });
+    
+    console.log('Total testimonials in DOM:', testimonialsContainer.children.length);
 }
 
 // Sayfa yüklendiğinde testimonials'ı güncelle
