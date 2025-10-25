@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initWhatsAppButton();
     initContactForm();
     initAnimations();
+    initBeforeAfter();
+    initGallery();
 });
 
 // Header functionality
@@ -22,6 +24,220 @@ function initHeader() {
             header.classList.remove('scrolled');
         }
     });
+}
+
+// Gallery population
+function initGallery() {
+    const grid = document.querySelector('.gallery-grid');
+    if (!grid) return;
+
+    const files = [
+        "WhatsApp Image 2025-09-05 at 04.22.40 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.22.40 (2).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.22.40 (3).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.22.40.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.22.41 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.22.41 (2).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.22.41 (3).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.22.41 (4).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.22.41 (5).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.22.41.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.22.42 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.22.42 (2).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.22.42 (3).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.22.42.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.25.15 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.25.15.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.25.17 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.25.17 (2).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.25.17 (3).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.25.17 (4).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.25.17.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.25.19 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.25.19.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.25.20 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.25.20.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.29.17 (2).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.29.17 (4).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.29.17 (5).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.29.18 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.29.18 (2).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.29.18 (3).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.29.18.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.29.20 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.29.20 (2).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.29.20 (5).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.29.20.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.32.42.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.32.43 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.32.43 (4).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.32.43.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.34.04 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.34.04 (3).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.34.05 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.34.05 (2).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.34.05 (3).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.34.05 (4).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.34.05.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.35.16 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.35.16.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.35.42 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.35.42.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.38.38 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.38.38 (2).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.38.38 (3).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.38.38.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.38.39 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.38.39 (2).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.38.39.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.39.20 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.39.20 (2).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.39.20.jpeg",
+        "WhatsApp Image 2025-09-05 at 04.39.45 (1).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.39.45 (2).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.39.45 (3).jpeg",
+        "WhatsApp Image 2025-09-05 at 04.39.45.jpeg"
+    ];
+
+    const fragment = document.createDocumentFragment();
+    files.forEach(name => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        const img = document.createElement('img');
+        img.loading = 'lazy';
+        img.alt = 'Galeri';
+        img.src = `gorsel/galeri/${name}`;
+        item.appendChild(img);
+        fragment.appendChild(item);
+    });
+    grid.appendChild(fragment);
+
+    // Controls
+    const prev = document.querySelector('.gallery-prev');
+    const next = document.querySelector('.gallery-next');
+    const cardWidth = () => grid.querySelector('.gallery-item')?.getBoundingClientRect().width || 300;
+    const scrollByCard = (dir) => grid.scrollBy({ left: dir * (cardWidth() + 16), behavior: 'smooth' });
+    prev && prev.addEventListener('click', () => scrollByCard(-1));
+    next && next.addEventListener('click', () => scrollByCard(1));
+
+    // Drag to scroll (desktop)
+    let isDown = false, startX = 0, startLeft = 0;
+    const onDown = (e) => { isDown = true; startX = e.pageX || e.touches?.[0].pageX; startLeft = grid.scrollLeft; grid.classList.add('dragging'); };
+    const onMove = (e) => { if (!isDown) return; const x = e.pageX || e.touches?.[0].pageX; grid.scrollLeft = startLeft - (x - startX); };
+    const onUp = () => { isDown = false; grid.classList.remove('dragging'); };
+    grid.addEventListener('mousedown', onDown);
+    grid.addEventListener('mousemove', onMove);
+    grid.addEventListener('mouseup', onUp);
+    grid.addEventListener('mouseleave', onUp);
+    grid.addEventListener('touchstart', onDown, { passive: true });
+    grid.addEventListener('touchmove', onMove, { passive: true });
+    grid.addEventListener('touchend', onUp, { passive: true });
+}
+
+// Before/After slider
+function initBeforeAfter() {
+    const wrappers = document.querySelectorAll('.ba-wrapper');
+    if (!wrappers.length) return;
+
+    wrappers.forEach((wrapper) => {
+        const overlay = wrapper.querySelector('.ba-overlay');
+        const handle = wrapper.querySelector('.ba-handle');
+        if (!overlay || !handle) return;
+
+        let dragging = false;
+
+        const bounds = () => wrapper.getBoundingClientRect();
+
+        const setPosition = (clientX) => {
+            const rect = bounds();
+            let x = clientX - rect.left;
+            x = Math.max(0, Math.min(x, rect.width));
+            const percent = (x / rect.width) * 100;
+            overlay.style.width = percent + '%';
+            handle.style.left = percent + '%';
+        };
+
+        const start = (e) => {
+            dragging = true;
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            setPosition(clientX);
+            e.preventDefault();
+        };
+        const move = (e) => {
+            if (!dragging) return;
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            setPosition(clientX);
+        };
+        const end = () => { dragging = false; };
+
+        handle.addEventListener('mousedown', start, { passive: false });
+        window.addEventListener('mousemove', move, { passive: true });
+        window.addEventListener('mouseup', end, { passive: true });
+
+        handle.addEventListener('touchstart', start, { passive: false });
+        window.addEventListener('touchmove', move, { passive: false });
+        window.addEventListener('touchend', end, { passive: true });
+
+        // Center at 50% initially
+        setTimeout(() => {
+            const rect = bounds();
+            setPosition(rect.left + rect.width / 2);
+        }, 0);
+    });
+
+    // Carousel logic
+    const viewport = document.querySelector('.ba-viewport');
+    const track = document.querySelector('.ba-track');
+    const slides = document.querySelectorAll('.ba-slide');
+    const prev = document.querySelector('.ba-prev');
+    const next = document.querySelector('.ba-next');
+    const dotsContainer = document.querySelector('.ba-dots');
+
+    if (!viewport || !track || !slides.length) return;
+
+    let index = 0;
+
+    const updateDots = () => {
+        if (!dotsContainer) return;
+        dotsContainer.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
+    };
+
+    // Create dots once
+    if (dotsContainer && !dotsContainer.children.length) {
+        slides.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.addEventListener('click', () => { index = i; goTo(index); });
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    const goTo = (i) => {
+        index = (i + slides.length) % slides.length;
+        const offset = -index * viewport.clientWidth;
+        track.style.transform = `translateX(${offset}px)`;
+        updateDots();
+    };
+
+    const nextSlide = () => goTo(index + 1);
+    const prevSlide = () => goTo(index - 1);
+
+    next && next.addEventListener('click', nextSlide);
+    prev && prev.addEventListener('click', prevSlide);
+
+    // Swipe support
+    let startX = 0; let isSwiping = false;
+    const onStart = (e) => { isSwiping = true; startX = e.touches ? e.touches[0].clientX : e.clientX; };
+    const onEnd = (e) => { if (!isSwiping) return; isSwiping = false; const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX; const dx = endX - startX; if (Math.abs(dx) > 50) { dx < 0 ? nextSlide() : prevSlide(); } };
+    viewport.addEventListener('mousedown', onStart, { passive: true });
+    viewport.addEventListener('mouseup', onEnd, { passive: true });
+    viewport.addEventListener('mouseleave', onEnd, { passive: true });
+    viewport.addEventListener('touchstart', onStart, { passive: true });
+    viewport.addEventListener('touchend', onEnd, { passive: true });
+
+    // Resize handling & initial position
+    window.addEventListener('resize', () => goTo(index));
+    goTo(0);
 }
 
 // Mobile menu functionality
@@ -60,12 +276,11 @@ function initSmoothScrolling() {
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
+                e.preventDefault();
                 const headerHeight = document.getElementById('header').offsetHeight;
                 const targetPosition = targetSection.offsetTop - headerHeight;
                 
@@ -76,6 +291,21 @@ function initSmoothScrolling() {
             }
         });
     });
+
+    // Delegated handler ensures it works every time
+    document.addEventListener('click', function(e) {
+        const anchor = e.target.closest('.hero .hero-buttons a[href^="#"]');
+        if (!anchor) return;
+        const targetId = anchor.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        if (!targetSection) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        const headerHeight = document.getElementById('header')?.offsetHeight || 0;
+        const targetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+        window.scrollTo({ top: targetTop, behavior: 'smooth' });
+        anchor.blur();
+    }, true);
 }
 
 // Scroll effects
@@ -134,7 +364,7 @@ function initWhatsAppButton() {
     if (whatsappButton) {
         whatsappButton.addEventListener('click', function() {
             // WhatsApp number
-            const phoneNumber = '905312822513';
+            const phoneNumber = '905323028222';
             const message = 'Merhaba! Beyoğlu Kuru Temizleme hakkında bilgi almak istiyorum.';
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             
@@ -379,133 +609,53 @@ window.addEventListener('error', function(e) {
 
 // Service Worker kaldırıldı - şu an için gerekli değil
 
-// Google Maps Reviews Cache System
-const GOOGLE_PLACES_API_KEY = 'AIzaSyBqpRhsYXFC5DTf8DNLgK-kB2u_siD40Y4'; // Google Places API Key
-const PLACE_ID = 'ChIJN1t_tDeuEmsRUsoyG83frY4'; // Beyoğlu Kuru Temizleme Place ID
-const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 saat
+ 
 
-// Cache fonksiyonları
-function cacheReviews(reviews) {
-    const cacheData = {
-        reviews: reviews,
-        timestamp: Date.now()
-    };
-    localStorage.setItem('googleReviews', JSON.stringify(cacheData));
-}
-
-function getCachedReviews() {
-    const cached = localStorage.getItem('googleReviews');
-    if (cached) {
-        const { reviews, timestamp } = JSON.parse(cached);
-        if (Date.now() - timestamp < CACHE_DURATION) {
-            return reviews;
-        }
-    }
-    return null;
-}
-
-// Google Places API'den yorumları çek
-async function fetchGoogleReviews() {
-    try {
-        // API key ve Place ID kontrolü
-        if (GOOGLE_PLACES_API_KEY === 'YOUR_API_KEY_HERE' || PLACE_ID === 'YOUR_PLACE_ID_HERE') {
-            console.log('API Key veya Place ID ayarlanmamış, fallback yorumları kullanılıyor');
-            return getFallbackReviews();
-        }
-        
-        console.log('Fetching from Google API...');
-        console.log('Place ID:', PLACE_ID);
-        console.log('API Key:', GOOGLE_PLACES_API_KEY.substring(0, 10) + '...');
-        
-        // CORS proxy'ler çalışmıyor, doğrudan API'yi dene
-        const apiUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=reviews&key=${GOOGLE_PLACES_API_KEY}`;
-        
-        console.log('Trying direct API call...');
-        const response = await fetch(apiUrl, {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-                'Accept': 'application/json'
-            }
-        });
-        
-        console.log('Direct API response status:', response.status);
-        
-        console.log('Response status:', response.status);
-        
-        if (!response.ok) {
-            throw new Error(`API request failed: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        console.log('API Response:', data);
-        console.log('API Status:', data.status);
-        console.log('Result exists:', !!data.result);
-        console.log('Reviews exist:', !!(data.result && data.result.reviews));
-        
-        if (data.status === 'OK' && data.result && data.result.reviews) {
-            console.log('Reviews found:', data.result.reviews.length);
-            console.log('First review:', data.result.reviews[0]);
-            return data.result.reviews;
-        } else {
-            console.log('No reviews found or API error:', data.status);
-            console.log('Error message:', data.error_message || 'No error message');
-            return getFallbackReviews();
-        }
-    } catch (error) {
-        console.error('Error fetching Google reviews:', error);
-        return getFallbackReviews();
-    }
-}
+ 
 
 // Fallback yorumlar (API çalışmazsa)
 function getFallbackReviews() {
     console.log('Using fallback reviews due to CORS restrictions');
     return [
         {
-            author_name: "Ayşe Yılmaz",
+            author_name: "Seda K." ,
             rating: 5,
-            text: "Çok kaliteli hizmet aldım. Kıyafetlerim yeni gibi oldu. Kesinlikle tavsiye ederim.",
+            text: "Beyaz spor ayakkabılarım neredeyse kullanılamaz durumdaydı, pırıl pırıl teslim aldım. Teslim tarihi söyledikleri gibi, fiyatı da baştan netti.",
             time: Date.now()
         },
         {
-            author_name: "Mehmet Demir", 
-            rating: 5,
-            text: "Hızlı ve güvenilir hizmet. Fiyatları da çok uygun. Teşekkürler!",
+            author_name: "Hakan T.",
+            rating: 4,
+            text: "Takım elbisemin kol boyu ve bel daraltma için gittim. Dikişleri fabrika çıkışı gibi oldu. Sadece teslimatta 1 saat gecikme yaşandı, onun dışında kusursuz.",
             time: Date.now()
         },
         {
-            author_name: "Fatma Özkan",
+            author_name: "Elif A.",
             rating: 5,
-            text: "Profesyonel ekip, kaliteli hizmet. Gelinliğimi mükemmel temizlediler.",
+            text: "Gelinlik temizliği için çok yer araştırdım, içim en çok burada rahat etti. Leke kalmadı, tüller sertleşmemiş. Kılıfına düzgün yerleştirip teslim ettiler.",
+            time: Date.now()
+        },
+        {
+            author_name: "Yasin B.",
+            rating: 5,
+            text: "Yorgan ve battaniye temizliğinde kokusuz ve tertemiz teslim ettiler. Eve kadar teslim seçeneği işimi kolaylaştırdı.",
+            time: Date.now()
+        },
+        {
+            author_name: "Nesrin D.",
+            rating: 4,
+            text: "Deri montumun renginde açılma vardı, bakımını yapıp yumuşattılar. İlk gün hafif koku vardı ama 1-2 saat havalandırınca geçti.",
             time: Date.now()
         }
     ];
 }
 
-// Yorumları al (cache'den veya API'den)
-async function getReviews() {
-    // Önce cache'i kontrol et
-    const cachedReviews = getCachedReviews();
-    if (cachedReviews) {
-        console.log('Reviews loaded from cache');
-        return cachedReviews;
-    }
-    
-    // Cache yoksa API'den çek
-    console.log('Fetching reviews from Google API');
-    const reviews = await fetchGoogleReviews();
-    
-    // Cache'e kaydet
-    cacheReviews(reviews);
-    
-    return reviews;
-}
+ 
 
 // Testimonials'ı güncelle
 async function updateTestimonials() {
     console.log('updateTestimonials called');
-    const reviews = await getReviews();
+    const reviews = getFallbackReviews();
     console.log('Reviews received:', reviews);
     
     const testimonialsContainer = document.querySelector('.testimonials-grid');

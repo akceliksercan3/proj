@@ -94,11 +94,12 @@
                 </h1>
                 <p class="hero-description">
                     Güvenilir ve kaliteli kuru temizleme hizmetleri. 
-                    Uzman ekibimizle kıyafetlerinizi özenle temizliyoruz.
+            
                 </p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Hemen Ara</a>
-                    <a href="#services" class="btn btn-secondary">Hizmetlerimiz</a>
+                    <a id="btnCall" href="#contact" class="btn btn-primary">Hemen Ara</a>
+                    <a id="btnServices" href="#services" class="btn btn-secondary">Hizmetlerimiz</a>
+                    <a id="btnMap" href="#map" class="btn btn-secondary">Konumumuz</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -117,7 +118,7 @@
             <div class="about-content">
                 <div class="about-text">
                     <h3>Beyoğlu Kuru Temizleme</h3>
-                    <p>20 yılı aşkın deneyimimizle profesyonel kuru temizleme hizmetleri sunuyoruz. Müşteri memnuniyeti odaklı çalışma prensibimizle, kıyafetlerinizi özenle temizliyor ve bakımını yapıyoruz.</p>
+                    <p>Profesyonel kuru temizleme hizmetleri sunuyoruz. Müşteri memnuniyeti odaklı çalışma prensibimizle, kıyafetlerinizi özenle temizliyor ve bakımını yapıyoruz.</p>
                     <div class="features">
                         <div class="feature">
                             <i class="fas fa-check-circle"></i>
@@ -289,6 +290,60 @@
                 </div>
                 <!-- Add more gallery items as needed -->
             </div>
+            <div class="gallery-controls">
+                <button class="gallery-btn gallery-prev" aria-label="Önceki">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="gallery-btn gallery-next" aria-label="Sonraki">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before/After Section -->
+    <section id="before-after" class="before-after">
+        <div class="container">
+            <div class="section-header">
+                <h2>Öncesi / Sonrası</h2>
+                <p>Profesyonel temizleme sonrası fark</p>
+            </div>
+            <div class="ba-carousel">
+                <button class="ba-nav ba-prev" aria-label="Önceki"><i class="fas fa-chevron-left"></i></button>
+                <div class="ba-viewport">
+                    <div class="ba-track">
+                        <div class="ba-slide">
+                            <div class="ba-wrapper" aria-label="Öncesi sonrası karşılaştırma 1">
+                                <img src="gorsel/WhatsApp Image 2025-09-05 at 04.25.18 (1).jpeg" alt="Sonrası" class="ba-img" />
+                                <div class="ba-overlay">
+                                    <img src="gorsel/WhatsApp Image 2025-09-05 at 04.25.18.jpeg" alt="Öncesi" class="ba-img" />
+                                </div>
+                                <div class="ba-handle"><span></span></div>
+                            </div>
+                        </div>
+                        <div class="ba-slide">
+                            <div class="ba-wrapper" aria-label="Öncesi sonrası karşılaştırma 2">
+                                <img src="gorsel/WhatsApp Image 2025-09-05 at 04.25.19 (2).jpeg" alt="Sonrası" class="ba-img" />
+                                <div class="ba-overlay">
+                                    <img src="gorsel/WhatsApp Image 2025-09-05 at 04.25.19 (4).jpeg" alt="Öncesi" class="ba-img" />
+                                </div>
+                                <div class="ba-handle"><span></span></div>
+                            </div>
+                        </div>
+                        <div class="ba-slide">
+                            <div class="ba-wrapper" aria-label="Öncesi sonrası karşılaştırma 3">
+                                <img src="gorsel/WhatsApp Image 2025-09-05 at 04.25.19 (3).jpeg" alt="Sonrası" class="ba-img" />
+                                <div class="ba-overlay">
+                                    <img src="gorsel/WhatsApp Image 2025-09-05 at 04.25.19 (5).jpeg" alt="Öncesi" class="ba-img" />
+                                </div>
+                                <div class="ba-handle"><span></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="ba-nav ba-next" aria-label="Sonraki"><i class="fas fa-chevron-right"></i></button>
+                <div class="ba-dots"></div>
+            </div>
         </div>
     </section>
 
@@ -339,7 +394,7 @@
                         <i class="fas fa-phone"></i>
                         <div>
                             <h4>Telefon</h4>
-                            <p>+90 531 282 25 13</p>
+                            <p>+90 532 302 82 22</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -353,42 +408,16 @@
                         <i class="fas fa-clock"></i>
                         <div>
                             <h4>Çalışma Saatleri</h4>
-                            <p>Pazartesi - Cumartesi: 08:00 - 20:00</p>
+                            <p>Pazartesi - Cumartesi: 08:00 - 18:30</p>
                         </div>
                     </div>
-                </div>
-                <div class="contact-form">
-                    <h3>İletişim Formu</h3>
-                    <p>Bizimle iletişime geçin, size en kısa sürede dönüş yapalım</p>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Adınız Soyadınız</label>
-                            <input type="text" id="name" name="name" placeholder="Adınız ve soyadınızı yazın" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-posta Adresiniz</label>
-                            <input type="email" id="email" name="email" placeholder="ornek@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Telefon Numaranız</label>
-                            <input type="tel" id="phone" name="phone" placeholder="0555 123 45 67" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Mesajınız</label>
-                            <textarea id="message" name="message" placeholder="Mesajınızı detaylı bir şekilde yazın..." rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i>
-                            Mesaj Gönder
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Map Section -->
-    <section class="map-section">
+    <section id="map" class="map-section">
         <div class="container">
                             <div class="map-content">
                 <h3>Konumumuz</h3>
@@ -427,7 +456,7 @@
                 </div>
                 <div class="footer-section">
                     <h4>İletişim</h4>
-                    <p>Telefon: +90 531 282 25 13</p>
+                    <p>Telefon: +90 532 302 82 22</p>
                     <p>Adres: Yeni Mahalle 33175 Sokak Fullkart 2 Apartmanı Altı No:11/B, 33200 Mezitli/Mersin</p>
                 </div>
                 <div class="footer-section">
