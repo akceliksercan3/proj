@@ -701,9 +701,9 @@ async function updateTestimonials() {
 }
 
 // Sayfa yüklendiğinde testimonials'ı güncelle
-document.addEventListener('DOMContentLoaded', function() {
-    updateTestimonials();
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//     updateTestimonials();
+// });
 
 // Slider functionality
 let servicesCurrentSlide = 0;

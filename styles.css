@@ -1203,6 +1203,26 @@ body {
     font-size: 0.9rem !important;
 }
 
+/* Stars (testimonials) */
+.stars {
+    display: inline-block;
+    margin-top: 4px;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #fde68a, #fbbf24, #f59e0b);
+    background-clip: text; /* standard */
+    -webkit-background-clip: text; /* vendor */
+    color: transparent; /* fallback */
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.5), 0 2px 10px rgba(0,0,0,0.15);
+}
+
+/* Slightly different glow for 4-star to make contrast with last hollow star */
+.stars.stars-4 {
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.45), 0 1px 8px rgba(0,0,0,0.12);
+}
+
 /* Contact Section */
 .contact {
     padding: 100px 0;
