@@ -1,0 +1,9 @@
+# Beyoglu Kuru Temizleme Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://beyoglukurutemizleme.com/sitemap.xml
+
+# Disallow unnecessary files
+Disallow: /deneme.html
